@@ -46,9 +46,9 @@ model Pet {
   id        Int      @id @default(autoincrement())
   name      String   @db.VarChar(255)
   isAdopted Boolean  @default(false)
-  species   String?  @db.VarChar(255)
-  size      Size?
-  weight    Int?
+  species   String   @db.VarChar(255)
+  size      Size
+  weight    Int
   race      String   @db.VarChar(255)
   sex       Sex
   image     String   @db.VarChar(255)
