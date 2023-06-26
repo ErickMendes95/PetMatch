@@ -1,30 +1,42 @@
 "use client";
+import { useAuth } from "@app/AuthContext";
 import Image from "next/image";
 import React, { useState } from "react";
+import { FaEyeSlash, FaEye } from "react-icons/fa";
 
-export default async function Login() {
+export default function Login() {
+  const {login} = useAuth();
   const [formValue, setFormValues] = useState({
     email: "",
     password: "",
   });
+  const [showPassword, setShowPassword] = useState(false);
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormValues((prevValues) => ({
       ...prevValues,
       [name]: value,
     }));
-  }
+  };
 
-  function handleSubmit(e: React.FormEvent) {
+  const handlePasswordVisibility = () => {
+    setShowPassword((prevValue) => !prevValue);
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  }
+    // const { email, password } = formValue;
+    // login(email, password);
+
+  };
+
   return (
-    <div className="text-black w-full h-screen flex flex-col items-center">
-      <h1 className="text-blue-500 text-4xl mt-3">Faça seu login</h1>
+    <div className="text-black bg-gray-200 w-full h-screen flex flex-col items-center">
+      <h1 className="text-4xl mt-8">Faça seu login</h1>
       <form
         onSubmit={handleSubmit}
-        className="bg-gray-100 bg-gradient-to-b from-blue-200 border border-blue-500 p-4 rounded-xl flex flex-col gap-4 mt-10"
+        className="bg-blue-200 border border-blue-500 p-4 rounded-xl flex flex-col gap-4 mt-10"
       >
         <label>
           <span className="text-xl">Email</span>
@@ -33,18 +45,27 @@ export default async function Login() {
             name="email"
             value={formValue.email}
             onChange={handleChange}
-            className="pl-1 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            className="pl-1 mt-1 block w-full rounded-md border border-gray-700 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
           />
         </label>
         <label>
           <span className="text-xl">Senha</span>
-          <input
-            type="password"
-            name="password"
-            value={formValue.password}
-            onChange={handleChange}
-            className="pl-1 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-          />
+          <div className="flex flex-row">
+            <input
+              type={showPassword ? "text" : "password"}
+              name="password"
+              value={formValue.password}
+              onChange={handleChange}
+              className="pl-1 mt-1 block w-full rounded-md border border-gray-700 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            />
+            <button
+              type="button"
+              className="password-toggle-button ml-2"
+              onClick={handlePasswordVisibility}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </button>
+          </div>
         </label>
         <button
           type="submit"

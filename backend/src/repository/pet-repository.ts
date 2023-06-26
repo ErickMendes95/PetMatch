@@ -43,9 +43,9 @@ async function deletePet(petId: number) {
   });
 }
 
-async function findByPetId(petId: number) {
+async function findByPetId(id: number) {
   return prisma.pet.findFirst({
-    where: { id: petId },
+    where: { id },
   });
 }
 

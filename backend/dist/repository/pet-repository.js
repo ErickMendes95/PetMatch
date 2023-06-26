@@ -33,9 +33,9 @@ async function deletePet(petId) {
         where: { id: petId },
     });
 }
-async function findByPetId(petId) {
+async function findByPetId(id) {
     return database_1.default.pet.findFirst({
-        where: { id: petId },
+        where: { id },
     });
 }
 async function getAll() {

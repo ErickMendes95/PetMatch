@@ -27,7 +27,7 @@ export interface CreatePet {
   state: string;
 }
 
-const AtualizarPet: React.FC = () => {
+const CriarPet: React.FC = () => {
   const [pet, setPet] = useState<CreatePet>({
     name: "",
     species: "",
@@ -226,4 +226,4 @@ const AtualizarPet: React.FC = () => {
   );
 };
 
-export default AtualizarPet;
+export default CriarPet;

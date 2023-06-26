@@ -17,9 +17,9 @@ async function getAll(req, res, next) {
 }
 exports.getAll = getAll;
 async function getPetById(req, res, next) {
-    const petId = +req.params.id;
+    const id = +req.params.id;
     try {
-        const pet = await pet_service_1.default.getPetById(petId);
+        const pet = await pet_service_1.default.getPetById(id);
         return res.status(http_status_1.default.OK).send(pet);
     }
     catch (error) {

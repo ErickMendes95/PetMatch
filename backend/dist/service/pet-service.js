@@ -11,10 +11,10 @@ async function getAll() {
         throw (0, error_1.NotFoundError)();
     return pets;
 }
-async function getPetById(petId) {
-    if (!petId)
+async function getPetById(id) {
+    if (!id)
         throw (0, error_1.UnprocessableEntityError)();
-    const pet = await pet_repository_1.default.findByPetId(petId);
+    const pet = await pet_repository_1.default.findByPetId(id);
     if (!pet)
         throw (0, error_1.NotFoundError)();
     return pet;

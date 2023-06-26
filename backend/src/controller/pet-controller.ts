@@ -16,10 +16,10 @@ export async function getPetById(
   res: Response,
   next: NextFunction
 ) {
-  const petId = +req.params.id as number;
+  const id = +req.params.id as number;
 
   try {
-    const pet = await petService.getPetById(petId);
+    const pet = await petService.getPetById(id);
     return res.status(httpStatus.OK).send(pet);
   } catch (error) {
     next(error);
